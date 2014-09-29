@@ -1,5 +1,4 @@
-Artificial Neural Networks for Unstoppable Software (annus)
-
+Artificial Neural Networks for Unstoppable Software
 =====
 
 What is ANNUS?
