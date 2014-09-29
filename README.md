@@ -1,6 +1,3 @@
-Artificial Neural Networks for Unstoppable Software
-=====
-
 What is ANNUS?
 
 - javascript implementation of neural networks and probabilistic
