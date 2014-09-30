@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.0.min.js"></script>
+  <script src="test.js" type="text/javascript"></script>
+  <script src="view.js" type="text/javascript"></script>
+</head>
+
+<body onload="init();">
+
+<input type="button" value="Go!" onclick="hello()"/>
+
+<span id="hello"></span>
+
+<br/><br/>
+
+<table width="900">
+  <tr>
+    <td width="400">
+      <canvas id="viewer"
+	      width="400"
+	      height="400"
+	      style="border:1px solid black"></canvas>
+    </td>
+    <td width="500" id="graph"></td>
+  </tr>
+</table>
+
+</body>
+</html>
