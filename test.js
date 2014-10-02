@@ -8,8 +8,8 @@ function dot(a, b) {
 
 function Perceptron() {
     this.w = [0, 0, 0]
-    this.a = 0.01;
-    this.batch_size = 10;
+    this.a = 0.001;
+    this.batch_size = 100;
 }
 
 Perceptron.prototype.score = function(x) {
@@ -47,6 +47,14 @@ function generateData(f, n) {
     return [xs, ys];
 }
 
+function generateBinaryData(f, n) {
+    xs = []
+    for (var i=0; i<n; i++) {
+	xs[i] = f()
+    }
+    return xs;
+}
+
 function addNoise(xs, a) {
     for (var i=0; i<xs.length; i++) {
 	xs[i][0] += (Math.random() * 2 - 1) * a;
@@ -62,4 +70,44 @@ function line(x, y) {
     a = 1
     b = 2
     return a * x + b * y > 0
+}
+
+function pattern2() {
+    bits = randomBinaryNumber()
+    if (bits[0] && bits[4] && bits[9] && !bits[15]) {
+	return bits
+    }
+
+    if (bits[2] && bits[19]) {
+	return bits
+    }
+
+    return pattern2();
+}
+
+function pattern() {
+    result = []
+    result[0] = Math.floor(Math.random() * 2);
+    result[1] = Math.floor(Math.random() * 2);
+    result[2] = Math.floor(Math.random() *2);
+    for (var i=3; i<20; i++) {
+	result[i] = result[i-1] * 0.5;
+	result[i] += result[i-2] * 0.5;
+	result[i] += result[i-3] * 0.5;
+	result[i] += Math.random();
+	result[i] = Math.floor(result[i]) % 2;
+    }
+    return result
+}
+
+function randomBinaryNumber() {
+    result = [];
+    n = Math.random();
+    if (n < 0.3)
+	n *= 19;
+    for (var i=0; i<20; i++) {
+	result[i] = Math.floor(n) % 2;
+	n *= 2;
+    }
+    return result;
 }
