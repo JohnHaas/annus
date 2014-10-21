@@ -1,5 +1,8 @@
 var perceptron = new Perceptron();
 var running = false;
+var canvas = document.getElementById('viewer');
+var ctx = canvas.getContext('2d');
+var weightLabel = document.getElementById('weightLabel');
 
 function init() {
 	data = generateData(line, 1000);
@@ -37,11 +40,14 @@ function tick() {
 
 	perceptron.iteration(xs, ys);
 	redraw();
+	weightLabel.innerHTML = perceptron.w
+			.map(function (num){
+				var roundedNum = Math.floor(num*1000)/1000;
+				return '<span class="flex-value">'+roundedNum+'</span>';
+			}).join(' ');
 }
 
 function redraw() {
-	var canvas = document.getElementById('viewer');
-	var ctx = canvas.getContext('2d');
 	var w = canvas.width;
 	var h = canvas.height;
 	var positiveFillStyle = "rgba(0, 0, 200, 0.4)";
