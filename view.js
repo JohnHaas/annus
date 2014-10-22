@@ -3,6 +3,7 @@ var running = false;
 var canvas = document.getElementById('viewer');
 var ctx = canvas.getContext('2d');
 var weightLabel = document.getElementById('weightLabel');
+var redrawDebounced = _.debounce(redraw, 10);
 
 function init() {
 	data = generateData(line, 1000);
@@ -22,15 +23,23 @@ function init() {
 }
 
 function hello() {
-	if (running)
-	return;
+	if (running) return;
 
 	running = true;
 	iterCount = 0;
 	runInterval = setInterval(tick, 100);
 }
 
+function stop() {
+	running = false;
+}
+
 function tick() {
+	if (!running) {
+		clearInterval(runInterval);
+		return;
+	}
+
 	iterCount += 1;
 	if (iterCount > 100) {
 		clearInterval(runInterval);
